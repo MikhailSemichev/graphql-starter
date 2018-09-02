@@ -1,0 +1,29 @@
+{
+    "name": "graphql-starter",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "node src/index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/MikhailSemichev/graphql-starter.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/MikhailSemichev/graphql-starter/issues"
+    },
+    "homepage": "https://github.com/MikhailSemichev/graphql-starter#readme",
+    "dependencies": {
+        "apollo-server": "^2.0.5",
+        "apollo-server-express": "^2.0.4",
+        "graphql": "^14.0.0"
+    },
+    "devDependencies": {
+        "eslint": "^5.5.0",
+        "eslint-plugin-node": "^7.0.1"
+    }
+}
