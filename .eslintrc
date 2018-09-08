@@ -19,6 +19,7 @@
             2,
             "always"
         ],
+        "no-unused-vars": ["error", { "args": "none" }],
         "no-constant-condition": 2,
         "no-control-regex": 2,
         "no-dupe-args": 2,
@@ -142,7 +143,6 @@
         "no-shadow": 2,
         "no-undef-init": 2,
         "no-undef": 2,
-        "no-unused-vars": 2,
         // Node.js
         "callback-return": 2,
         "no-mixed-requires": 2,

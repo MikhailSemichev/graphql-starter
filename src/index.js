@@ -1,41 +1,22 @@
 const express = require('express');
-const { ApolloServer, gql } = require('apollo-server-express');
+const { ApolloServer } = require('apollo-server-express');
 
-const books = [
-    {
-        title: 'Harry Potter and the Chamber of Secrets',
-        author: 'J.K. Rowling',
-    },
-    {
-        title: 'Jurassic Park',
-        author: 'Michael Crichton',
-    },
-];
-
-const typeDefs = gql`
-  type Book {
-    title: String
-    author: String
-  }
-
-  type Query {
-    books: [Book]
-    hello: String
-  }
-`;
-
-const resolvers = {
-    Query: {
-        books: () => books,
-        hello: () => 'Hello world',
-    },
-};
+const { typeDefs, resolvers } = require('./qraphql');
 
 const app = express();
 
 const server = new ApolloServer({
     typeDefs,
     resolvers,
+    introspection: true,
+    playground: {
+        endpoint: '/graphql',
+        settings: {
+            'editor.theme': 'light',
+            'editor.fontSize': 16,
+            'editor.cursorShape': 'line',
+        },
+    },
 });
 
 server.applyMiddleware({ app }); // app is from an existing express app
