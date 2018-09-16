@@ -14,7 +14,8 @@
                 "start"
             ],
             "restart": true,
-            "port": 9229
+            "port": 9229,
+            "console": "integratedTerminal"
         }
     ]
 }
