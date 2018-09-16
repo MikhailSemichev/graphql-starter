@@ -23,6 +23,7 @@
         "apollo-server-express": "^2.0.4",
         "express": "^4.16.3",
         "graphql": "^14.0.0",
+        "jsonwebtoken": "^8.3.0",
         "lodash.merge": "^4.6.1",
         "nodemon": "^1.18.4"
     },

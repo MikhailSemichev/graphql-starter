@@ -1,4 +1,5 @@
 const { UserInputError } = require('apollo-server-express');
+const { generateToken } = require('../../helpers/tokenHelper');
 
 class UserResolvers {
     login(_, args, context) {
@@ -8,12 +9,17 @@ class UserResolvers {
             throw new UserInputError('Login or password are incorrect');
         }
 
+        const user = {
+            _id: '123456',
+            name: 'Ivan Ivanov',
+            role: 'ADMIN',
+        };
+
+        const token = generateToken(user);
+
         return {
-            user: {
-                _id: '111',
-                name: 'Mikhail Semichev',
-            },
-            token: 'token_token_token_123',
+            user,
+            token,
         };
     }
 }
