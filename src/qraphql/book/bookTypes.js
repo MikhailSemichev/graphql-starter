@@ -3,16 +3,13 @@ module.exports = `
         _id: String
         title: String
         year: Int
+        authorId: String
         author: Author
         status: BookStatus
     }
 
-    type Author {
+    input BookInput {
         _id: String
-        name: String
-    }
-
-    input CreateBookInput {
         title: String!
         year: Int!
         authorId: String!
@@ -21,7 +18,7 @@ module.exports = `
 
     input BooksFilterInput {
         title: String
-        year: String
+        authorId: String
     }
 
     enum BookStatus {

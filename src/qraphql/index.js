@@ -1,18 +1,10 @@
 const merge = require('lodash.merge');
 
-const bookSchema = require('./book/bookSchema');
 const helloSchema = require('./hello/helloSchema');
-
-const typeDefs = `
-    type Query {
-        dummy1: String
-    }
-    type Mutation {
-        dummy2: String
-    }
-`;
+const authorSchema = require('./author/authorSchema');
+const bookSchema = require('./book/bookSchema');
 
 module.exports = {
-    typeDefs: typeDefs + bookSchema.typeDefs + helloSchema.typeDefs,
-    resolvers: merge(bookSchema.resolvers, helloSchema.resolvers),
+    typeDefs: helloSchema.typeDefs + authorSchema.typeDefs + bookSchema.typeDefs,
+    resolvers: merge(helloSchema.resolvers, authorSchema.resolvers, bookSchema.resolvers),
 };

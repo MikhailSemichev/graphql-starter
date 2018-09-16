@@ -1,5 +1,5 @@
 const booksResolvers = require('./bookResolvers');
-const booksMutations = require('./bookMutations');
+const authorResolvers = require('../author/authorResolvers');
 const bookTypes = require('./bookTypes');
 
 const typeDefs = `
@@ -9,8 +9,7 @@ const typeDefs = `
     }
 
     extend type Mutation {
-        createBook(book: CreateBookInput): Book
-        deleteBook(id: String!): String
+        saveBook(book: BookInput): Book
     }
 
     ${bookTypes}
@@ -18,15 +17,16 @@ const typeDefs = `
 
 const resolvers = {
     Query: {
-        getBooks: (...p) => booksResolvers.getBooks(...p),
-        getBook: (...p) => booksResolvers.getBook(...p),
+        getBooks: booksResolvers.getBooks,
+        getBook: booksResolvers.getBook,
     },
     Mutation: {
-        createBook: (...p) => booksMutations.createBook(...p),
+        saveBook: booksResolvers.saveBook,
     },
     Book: {
         // history: (parent, args, context) => getEstimationHistory(context, { estimationId: parent._id })
-        author: (...p) => booksResolvers.getAuthor(...p),
+        author: (book, args, context) =>
+            authorResolvers.getAuthor(book, { id: book.authorId }, context),
     },
 };
 
