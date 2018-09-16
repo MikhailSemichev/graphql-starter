@@ -23,9 +23,7 @@ class AuthorResolvers {
         const { author } = args;
 
         if (!author.name.trim()) {
-            throw new UserInputError('Validation error', {
-                name: 'Author name can\'t be blank',
-            });
+            throw new UserInputError('Author\'s name can\'t be blank');
         }
 
         // Create
