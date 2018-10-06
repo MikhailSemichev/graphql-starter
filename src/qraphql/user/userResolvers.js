@@ -1,8 +1,10 @@
 const { UserInputError } = require('apollo-server-express');
 const { generateToken } = require('../../helpers/tokenHelper');
+const { ROLE } = require('../../enums');
 
 class UserResolvers {
     login(_, args, context) {
+        debugger;
         const { login, password } = args;
 
         if (!login || !password) {
@@ -12,7 +14,7 @@ class UserResolvers {
         const user = {
             _id: '123456',
             name: 'Ivan Ivanov',
-            role: 'ADMIN',
+            role: ROLE.ADMIN,
         };
 
         const token = generateToken(user);

@@ -15,6 +15,14 @@ function generateToken(user) {
     return token;
 }
 
-function verifyToken(token, callback) {
-    jwt.verify(token, SECRET_KEY, callback);
+function verifyToken(token) {
+    try {
+        const user = jwt.verify(token, SECRET_KEY);
+        return user;
+    } catch (err) {
+        if (err.name === 'TokenExpiredError') {
+            return null;
+        }
+        return null;
+    }
 }
