@@ -4,7 +4,6 @@ const { ROLE } = require('../../enums');
 
 class UserResolvers {
     login(_, args, context) {
-        debugger;
         const { login, password } = args;
 
         if (!login || !password) {

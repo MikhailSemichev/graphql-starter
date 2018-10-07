@@ -1,6 +1,7 @@
 const booksResolvers = require('./bookResolvers');
 const authorResolvers = require('../author/authorResolvers');
 const bookTypes = require('./bookTypes');
+const { auth, ROLE } = require('../../middlewares/authMiddleware');
 
 const typeDefs = `
     extend type Query {
@@ -17,11 +18,11 @@ const typeDefs = `
 
 const resolvers = {
     Query: {
-        getBooks: booksResolvers.getBooks,
-        getBook: booksResolvers.getBook,
+        getBooks: auth([ROLE.CLIENT, ROLE.ADMIN])(booksResolvers.getBooks),
+        getBook: auth([ROLE.CLIENT, ROLE.ADMIN])(booksResolvers.getBook),
     },
     Mutation: {
-        saveBook: booksResolvers.saveBook,
+        saveBook: auth([ROLE.ADMIN])(booksResolvers.saveBook),
     },
     Book: {
         // history: (parent, args, context) => getEstimationHistory(context, { estimationId: parent._id })
