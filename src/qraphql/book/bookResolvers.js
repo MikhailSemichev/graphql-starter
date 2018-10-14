@@ -44,6 +44,7 @@ class BookResolvers {
         if (authorId) {
             result = result.filter(b => b.authorId === authorId);
         }
+        throw new Error('AAAAAAAAAA!!!!!!!');
 
         return result;
     }

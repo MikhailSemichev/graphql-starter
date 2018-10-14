@@ -3,6 +3,7 @@ const { ApolloServer } = require('apollo-server-express');
 
 const { typeDefs, resolvers } = require('./qraphql');
 const { verifyToken } = require('./helpers/tokenHelper');
+require('./helpers/logger');
 
 const app = express();
 

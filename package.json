@@ -28,7 +28,8 @@
         "graphql": "^14.0.0",
         "jsonwebtoken": "^8.3.0",
         "lodash.merge": "^4.6.1",
-        "nodemon": "^1.18.4"
+        "nodemon": "^1.18.4",
+        "winston": "^3.1.0"
     },
     "devDependencies": {
         "eslint": "^5.5.0",

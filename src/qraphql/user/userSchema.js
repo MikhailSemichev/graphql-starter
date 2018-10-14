@@ -1,5 +1,6 @@
 const userTypes = require('./userTypes');
 const userResolvers = require('./userResolvers');
+const { log } = require('../../middlewares/loggingMiddleware');
 
 const typeDefs = `
     extend type Mutation {
@@ -11,7 +12,7 @@ const typeDefs = `
 
 const resolvers = {
     Mutation: {
-        login: userResolvers.login,
+        login: log()(userResolvers.login),
     },
 };
 
