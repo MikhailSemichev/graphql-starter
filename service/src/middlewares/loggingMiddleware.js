@@ -9,12 +9,12 @@ module.exports.log = (settings) => (resolverFn) => {
         const time = Date.now();
         const userTransaction = `userId ${userId} : tr ${time}`;
 
-        logger.log(`calling ${resolverName} : args ${argsJson} : ${userTransaction}`);
+        logger.log(`${resolverName}... : args ${argsJson} : ${userTransaction}`);
 
         try {
             const result = await resolverFn(parent, args, context);
 
-            logger.log(`success ${resolverName} : perf=${Date.now() - time}ms : ${userTransaction}`);
+            logger.log(`${resolverName} : perf=${Date.now() - time}ms : ${userTransaction}`);
 
             return result;
         } catch (error) {

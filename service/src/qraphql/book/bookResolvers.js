@@ -1,4 +1,4 @@
-const { BOOK_STATUS } = require('../../helpers/constants');
+const { BOOK_STATUS } = require('../../constants');
 const { copyProps } = require('../../helpers/utils');
 
 const books = [
@@ -44,7 +44,6 @@ class BookResolvers {
         if (authorId) {
             result = result.filter(b => b.authorId === authorId);
         }
-        throw new Error('AAAAAAAAAA!!!!!!!');
 
         return result;
     }

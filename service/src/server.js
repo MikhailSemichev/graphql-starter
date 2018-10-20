@@ -1,4 +1,6 @@
 const express = require('express');
+var cors = require('cors');
+
 const { ApolloServer } = require('apollo-server-express');
 
 const { typeDefs, resolvers } = require('./qraphql');
@@ -6,6 +8,8 @@ const { verifyToken } = require('./helpers/tokenHelper');
 require('./helpers/logger');
 
 const app = express();
+
+app.use(cors());
 
 app.use((req, res, next) => {
     const { authorization } = req.headers;

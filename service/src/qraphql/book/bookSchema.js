@@ -12,7 +12,7 @@ const typeDefs = `
     }
 
     extend type Mutation {
-        saveBook(book: BookInput): Book
+        saveBook(book: BookInput!): Book
     }
 
     ${bookTypes}

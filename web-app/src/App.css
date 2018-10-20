@@ -1,0 +1,10 @@
+label,
+button {
+    display: block;
+}
+
+textarea {
+    display: block;
+    height: 600px;
+    width: 700px;
+}
