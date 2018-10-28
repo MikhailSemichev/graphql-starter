@@ -1,4 +1,5 @@
 {
+    "parser": "babel-eslint",
     "extends": [
         "eslint:recommended",
         "plugin:node/recommended"
@@ -45,7 +46,6 @@
         "use-isnan": 2,
         "valid-typeof": 2,
         "no-unexpected-multiline": 0,
-        // Best Practices
         "block-scoped-var": 2,
         "complexity": [
             2,
@@ -108,7 +108,6 @@
             "outside"
         ],
         "yoda": 2,
-        // ES2015
         "arrow-parens": 0,
         "arrow-spacing": [
             2,
@@ -130,12 +129,10 @@
         "prefer-const": 2,
         "prefer-spread": 2,
         "prefer-template": 2,
-        // Strict Mode
         "strict": [
             2,
             "never"
         ],
-        // Variables
         "no-catch-shadow": 2,
         "no-delete-var": 2,
         "no-label-var": 2,
@@ -143,14 +140,12 @@
         "no-shadow": 2,
         "no-undef-init": 2,
         "no-undef": 2,
-        // Node.js
         "callback-return": 2,
         "no-mixed-requires": 2,
         "no-path-concat": 2,
         "no-sync": 2,
         "handle-callback-err": 1,
         "no-new-require": 2,
-        // Stylistic
         "array-bracket-spacing": [
             2,
             "never",
@@ -290,7 +285,6 @@
                 ]
             }
         ],
-        // Legacy
         "max-depth": [
             0,
             4
