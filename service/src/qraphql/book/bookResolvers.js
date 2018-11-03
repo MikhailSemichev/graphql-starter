@@ -12,7 +12,6 @@ class BookResolvers {
     getBooks(_, args, context) {
         const { filter = {} } = args;
         const { title, authorId } = filter;
-        throw new Error('ddd');
 
         let result = books;
 
