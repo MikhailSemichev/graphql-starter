@@ -1,30 +1,8 @@
 const { BOOK_STATUS } = require('../../constants');
 const { copyProps } = require('../../helpers/utils');
+const { log } = require('../../decorators');
 
-const books = [
-    {
-        _id: '1',
-        title: 'Book 1',
-        year: 2017,
-        authorId: '1',
-        status: BOOK_STATUS.active,
-    },
-    {
-        _id: '2',
-        title: 'Book 2',
-        year: 2018,
-        authorId: '1',
-        status: BOOK_STATUS.active,
-    },
-    {
-        _id: '3',
-        title: 'Book 3',
-        year: 2018,
-        authorId: '2',
-        status: BOOK_STATUS.draft,
-    },
-];
-
+@log
 class BookResolvers {
     getBook(_, args, context) {
         const { id } = args;
@@ -34,6 +12,7 @@ class BookResolvers {
     getBooks(_, args, context) {
         const { filter = {} } = args;
         const { title, authorId } = filter;
+        throw new Error('ddd');
 
         let result = books;
 
@@ -62,5 +41,29 @@ class BookResolvers {
         return book;
     }
 }
+
+var books = [
+    {
+        _id: '1',
+        title: 'Book 1',
+        year: 2017,
+        authorId: '1',
+        status: BOOK_STATUS.active,
+    },
+    {
+        _id: '2',
+        title: 'Book 2',
+        year: 2018,
+        authorId: '1',
+        status: BOOK_STATUS.active,
+    },
+    {
+        _id: '3',
+        title: 'Book 3',
+        year: 2018,
+        authorId: '2',
+        status: BOOK_STATUS.draft,
+    },
+];
 
 module.exports = new BookResolvers();

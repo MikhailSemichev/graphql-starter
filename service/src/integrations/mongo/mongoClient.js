@@ -6,7 +6,7 @@ class MongoClient {
         return new Promise((resolve, reject) => {
             const { find, select, skip, limit, sort } = args;
             setTimeout(() => handleMongoTimeout(reject, `Mongo timeout: ${JSON.stringify(args, null, 4)}`), MONGO_TIMEOUT);
-    
+
             MongoObject
                 .find(find)
                 .collation({ locale: 'en_US', strength: 1 })

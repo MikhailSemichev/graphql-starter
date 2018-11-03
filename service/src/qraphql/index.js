@@ -18,32 +18,3 @@ module.exports = {
         userSchema.resolvers
     ),
 };
-
-debugger;
-setTimeout(function() {
-    try {
-        const p1 = new Person();
-        p1.sayHi('Ivan');
-    } catch (err) {
-       const ar = err;
-       const errr = ar;
-    }
-}, 200);
-
-//@log
-class Person {
-    @log
-    sayHi(name) {
-        return `Hello ${name}`;
-    }
-}
-
-function log(target, name, descriptor) {
-    const originalFunction = descriptor.value;
-
-    // eslint-disable-next-line
-    descriptor.value = function (...args) {
-        console.log('logger: ', ...args);
-        return originalFunction.apply(this, args);
-    };
-}
