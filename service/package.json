@@ -38,11 +38,13 @@
         "jsonwebtoken": "^8.3.0",
         "lodash.merge": "^4.6.1",
         "nodemon": "^1.18.4",
+        "redis": "^2.8.0",
         "winston": "^3.1.0"
     },
     "devDependencies": {
         "babel-eslint": "8.2.1",
         "eslint": "5.6.0",
-        "eslint-plugin-node": "^7.0.1"
+        "eslint-plugin-node": "^7.0.1",
+        "replace-require-with-import": "^2.1.0"
     }
 }

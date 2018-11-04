@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const { SECRET_KEY } = require('../constants');
+const { AUTH_SECRET_KEY } = require('../constants');
 
 module.exports = {
     generateToken,
@@ -11,13 +11,13 @@ function generateToken(user) {
         _id: user._id,
         name: user.name,
         role: user.role,
-    }, SECRET_KEY, { expiresIn: '3h' });
+    }, AUTH_SECRET_KEY, { expiresIn: '3h' });
     return token;
 }
 
 function verifyToken(token) {
     try {
-        const user = jwt.verify(token, SECRET_KEY);
+        const user = jwt.verify(token, AUTH_SECRET_KEY);
         return user;
     } catch (err) {
         if (err.name === 'TokenExpiredError') {

@@ -1,11 +1,10 @@
 require('dotenv').config();
 
-module.exports = {
-    AUTH_MODE: process.env.AUTH_MODE === 'true',
-    SECRET_KEY: 'DhbqHYEboCaoVAUx7lXFoYhwJGQJ1disVtQItqDxMf4QVHnYodw8VlBpzN3qpXd',
-    BOOK_STATUS: {
-        draft: 'draft',
-        active: 'active',
-        deleted: 'deleted',
-    }
-};
+export const ENVIRONMENT = process.env.ENVIRONMENT;
+
+export const AUTH_MODE = process.env.AUTH_MODE === 'true';
+export const AUTH_SECRET_KEY = process.env.AUTH_SECRET_KEY;
+
+export const REDIS_URL = process.env.REDIS_URL;
+export const REDIS_PASSWORD = process.env.REDIS_PASSWORD;
+

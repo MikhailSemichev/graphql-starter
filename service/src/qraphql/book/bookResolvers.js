@@ -1,4 +1,4 @@
-const { BOOK_STATUS } = require('../../constants');
+import { BOOK_STATUS } from '../../enums';
 const { copyProps } = require('../../helpers/utils');
 const { log } = require('../../decorators');
 
@@ -12,7 +12,6 @@ class BookResolvers {
     getBooks(_, args, context) {
         const { filter = {} } = args;
         const { title, authorId } = filter;
-        throw new Error('ddd');
 
         let result = books;
 
