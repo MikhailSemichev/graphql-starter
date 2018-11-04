@@ -1,5 +1,5 @@
-const jwt = require('jsonwebtoken');
-const { AUTH_SECRET_KEY } = require('../constants');
+import jwt from 'jsonwebtoken';
+import { AUTH_SECRET_KEY } from '../constants';
 
 module.exports = {
     generateToken,

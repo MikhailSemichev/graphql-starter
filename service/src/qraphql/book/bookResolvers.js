@@ -1,6 +1,6 @@
 import { BOOK_STATUS } from '../../enums';
-const { copyProps } = require('../../helpers/utils');
-const { log } = require('../../decorators');
+import { copyProps } from '../../helpers/utils';
+import { log } from '../../decorators';
 
 @log
 class BookResolvers {

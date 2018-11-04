@@ -1,5 +1,5 @@
-const { UserInputError } = require('apollo-server-express');
-const { copyProps } = require('../../helpers/utils');
+import { UserInputError } from 'apollo-server-express';
+import { copyProps } from '../../helpers/utils';
 
 let authors = [
     { _id: '1', name: 'Ivanov' },

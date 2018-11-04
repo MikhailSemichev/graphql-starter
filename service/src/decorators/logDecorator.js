@@ -1,5 +1,5 @@
-const logger = require('../helpers/logger');
-const baseDecorator = require('./baseDecorator');
+import logger from '../helpers/logger';
+import baseDecorator from './baseDecorator';
 
 /*
 class Example {

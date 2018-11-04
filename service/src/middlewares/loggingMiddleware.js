@@ -1,4 +1,4 @@
-const logger = require('../helpers/logger');
+import logger from '../helpers/logger';
 // usage: log()((parent, args, context) => { ... })
 // returns: (parent, args, context) => { ... }
 module.exports.log = (settings) => (resolverFn) => {

@@ -1,10 +1,10 @@
-const express = require('express');
-const cors = require('cors');
+import express from 'express';
+import cors from 'cors';
 
-const { ApolloServer } = require('apollo-server-express');
+import { ApolloServer } from 'apollo-server-express';
 
 const { typeDefs, resolvers } = require('./qraphql');
-const { verifyToken } = require('./helpers/tokenHelper');
+import { verifyToken } from './helpers/tokenHelper';
 require('./helpers/logger');
 
 const app = express();

@@ -1,6 +1,6 @@
-const userTypes = require('./userTypes');
-const userResolvers = require('./userResolvers');
-const { log } = require('../../middlewares/loggingMiddleware');
+import userTypes from './userTypes';
+import userResolvers from './userResolvers';
+import { log } from '../../middlewares/loggingMiddleware';
 
 const typeDefs = `
     extend type Mutation {

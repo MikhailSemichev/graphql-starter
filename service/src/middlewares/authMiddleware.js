@@ -1,6 +1,6 @@
-const { AuthenticationError } = require('apollo-server-express');
-const { ROLE } = require('../enums');
-const { AUTH_MODE } = require('../constants')
+import { AuthenticationError } from 'apollo-server-express';
+import { ROLE } from '../enums';
+import { AUTH_MODE } from '../constants'
 
 // usage: auth([ROLE.ADMIN])((parent, args, context) => { ... })
 // returns: (parent, args, context) => { ... }

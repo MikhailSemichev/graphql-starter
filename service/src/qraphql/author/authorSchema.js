@@ -1,6 +1,6 @@
-const authorTypes = require('./authorTypes');
-const authorResolvers = require('./authorResolvers');
-const booksResolvers = require('../book/bookResolvers');
+import authorTypes from './authorTypes';
+import authorResolvers from './authorResolvers';
+import booksResolvers from '../book/bookResolvers';
 
 const typeDefs = `
     extend type Query {

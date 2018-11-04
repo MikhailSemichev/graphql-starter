@@ -1,55 +1,54 @@
 import redis from 'redis';
-import { promisify } from 'util';
 import { ENVIRONMENT, REDIS_URL, REDIS_PASSWORD } from '../../constants';
 
 const [host, port] = REDIS_URL.split(':');
 
-const client = redis.createClient(port, host, { no_ready_check: true });
-client.auth(REDIS_PASSWORD, (err) => {
-    if (err) {
-        throw err;
+class RedisClient {
+    init() {
+        this.client = redis.createClient(port, host, { no_ready_check: true });
+        this.client.auth(REDIS_PASSWORD, (err) => {
+            if (err) {
+                throw err;
+            }
+        });
+
+        this.client.on('connect', () => {
+            console.log('Connected to Redis');
+        });
     }
-});
 
-client.on('connect', () => {
-    console.log('Connected to Redis');
-});
+    get(key) {
+        return promisify(this.client, 'get', envKey(key));
+    }
+    set(key, value) {
+        return promisify(this.client, 'set', envKey(key), JSON.stringify(value));
+    }
 
-export function get(key) {
-    return promisify('get', envKey(key));
+    hget(hash, key) {
+        return promisify(this.client, 'hget', envKey(hash), key);
+    }
+
+    hset(hash, key, value) {
+        return promisify(this.client, 'hset', envKey(hash), key, JSON.stringify(value));
+    }
+
+    del(key) {
+        return promisify(this.client, 'del', envKey(key));
+    }
 }
 
-export function set(key, value) {
-    return promisify('set', envKey(key), JSON.stringify(value));
-}
+const client = new RedisClient();
+client.init();
+export default client;
 
-export function hget(hash, key) {
-    return promisify('hget', envKey(hash), key);
-}
-
-export function hset(hash, key, value) {
-    return promisify('hset', envKey(hash), key, JSON.stringify(value));
-}
-
-export function hmget(hash, keys) {
-    return promisify('hmget', envKey(hash), keys);
-}
-
-export function hmset(hash, keyValArray) {
-    return promisify('hmset', envKey(hash), keyValArray);
-}
-
-export function del(key) {
-    return promisify('del', envKey(key));
-}
 
 function envKey(key) {
     return `${ENVIRONMENT}__${key}`;
 }
 
-function promisify(method, ...args) {
+function promisify(redisClient, method, ...args) {
     return new Promise((resolve, reject) => {
-        client[method](...args, (err, value) => {
+        redisClient[method](...args, (err, value) => {
             if (err) {
                 reject(err);
                 return;

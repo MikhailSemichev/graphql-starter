@@ -1,9 +1,9 @@
-const merge = require('lodash.merge');
+import merge from 'lodash.merge';
 
-const helloSchema = require('./hello/helloSchema');
-const authorSchema = require('./author/authorSchema');
-const bookSchema = require('./book/bookSchema');
-const userSchema = require('./user/userSchema');
+import helloSchema from './hello/helloSchema';
+import authorSchema from './author/authorSchema';
+import bookSchema from './book/bookSchema';
+import userSchema from './user/userSchema';
 
 module.exports = {
     typeDefs:

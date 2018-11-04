@@ -1,6 +1,6 @@
-const booksResolvers = require('./bookResolvers');
-const authorResolvers = require('../author/authorResolvers');
-const bookTypes = require('./bookTypes');
+import booksResolvers from './bookResolvers';
+import authorResolvers from '../author/authorResolvers';
+import bookTypes from './bookTypes';
 
 const { auth, ROLE } = require('../../middlewares/authMiddleware');
 

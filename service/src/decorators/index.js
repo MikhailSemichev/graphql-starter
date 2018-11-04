@@ -1,4 +1,4 @@
-const log = require('./logDecorator');
+import log from './logDecorator';
 
 module.exports = {
     log,

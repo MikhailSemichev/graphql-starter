@@ -1,6 +1,6 @@
-const { UserInputError } = require('apollo-server-express');
-const { generateToken } = require('../../helpers/tokenHelper');
-const { ROLE } = require('../../enums');
+import { UserInputError } from 'apollo-server-express';
+import { generateToken } from '../../helpers/tokenHelper';
+import { ROLE } from '../../enums';
 
 class UserResolvers {
     login(_, args, context) {
