@@ -1,55 +1,44 @@
 const logger = require('../helpers/logger');
+const baseDecorator = require('./baseDecorator');
 
-module.exports = function log(target, name, descriptor) {
-    // put on method
-    if (name) {
-        const className = target.constructor.name;
-        descriptor.value = wrappedMethod(
-            className,
-            descriptor.value
-        );
-        return;
+/*
+class Example {
+    @log
+    sum(a, b) {
+        return a + b;
     }
+}
+const ex = new Example();
+ex.sum(1, 2);
 
-    // put on class
-    const className = target.name;
-    for (const methodName of Object.keys(target.prototype)) {
-        // not private method
-        if (!methodName.startsWith('_')) {
-            target.prototype[methodName] = wrappedMethod(
-                className,
-                target.prototype[methodName]
-            );
-        }
-    }
-};
 
-function wrappedMethod(className, method) {
-    const methodInfo = `${className}.${method.name}`;
-
-    // eslint-disable-next-line
-    return function (...args) {
-        const time = Date.now();
-
-        logger.log(`${methodInfo}...`);
+function log(target, name, descriptor) {
+    const original = descriptor.value;
+    descriptor.value = function wrap(...args) {
+        console.log(`Arguments for ${name}: ${args}`);
         try {
-            const result = method.apply(this, args);
-
-            // if Promise
-            if (result && typeof result.then === 'function') {
-                result.then(() => {
-                    logger.log(`${methodInfo} : perf=${Date.now() - time}ms`);
-                }, error => {
-                    logger.logError(`${methodInfo} (${JSON.stringify(args.slice(0, 2))})`, error);
-                });
-            } else {
-                logger.log(`${methodInfo} : perf=${Date.now() - time}ms`);
-            }
-
+            const result = original.apply(this, args);
+            console.log(`Result from ${name}: ${result}`);
             return result;
-        } catch (error) {
-            logger.logError(`${methodInfo} (${JSON.stringify(args.slice(0, 2))})`, error);
-            throw error;
+        } catch (e) {
+            console.log(`Error from ${name}: ${e}`);
+            throw e;
         }
     };
-}
+}*/
+
+module.exports = baseDecorator({
+    onStart({ callContext, methodInfo }) {
+        logger.log(`${methodInfo}...`);
+        callContext.start = Date.now();
+    },
+
+    onSuccess({ callContext, methodInfo }) {
+        logger.log(`${methodInfo} : perf=${Date.now() - callContext.start}ms`);
+    },
+
+    onError({ methodInfo, args, error }) {
+        logger.logError(`${methodInfo} (${JSON.stringify(args.slice(0, 2))})`, error);
+    },
+});
+
