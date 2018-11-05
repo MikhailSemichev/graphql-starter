@@ -5,16 +5,15 @@ import authorSchema from './author/authorSchema';
 import bookSchema from './book/bookSchema';
 import userSchema from './user/userSchema';
 
-export default {
-    typeDefs:
-        helloSchema.typeDefs +
-        authorSchema.typeDefs +
-        bookSchema.typeDefs +
-        userSchema.typeDefs,
-    resolvers: merge(
-        helloSchema.resolvers,
-        authorSchema.resolvers,
-        bookSchema.resolvers,
-        userSchema.resolvers
-    ),
-};
+export const typeDefs =
+    helloSchema.typeDefs +
+    authorSchema.typeDefs +
+    bookSchema.typeDefs +
+    userSchema.typeDefs;
+
+export const resolvers = merge(
+    helloSchema.resolvers,
+    authorSchema.resolvers,
+    bookSchema.resolvers,
+    userSchema.resolvers
+);

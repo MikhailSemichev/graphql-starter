@@ -1,6 +1,5 @@
 import userTypes from './userTypes';
 import userResolvers from './userResolvers';
-import { log } from '../../middlewares/loggingMiddleware';
 
 const typeDefs = `
     extend type Mutation {
@@ -12,7 +11,7 @@ const typeDefs = `
 
 const resolvers = {
     Mutation: {
-        login: log()(userResolvers.login),
+        login: userResolvers.login,
     },
 };
 

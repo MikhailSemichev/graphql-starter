@@ -3,9 +3,12 @@ export default ({ onStart, onSuccess, onError }) =>
         // put on method
         if (name) {
             const className = target.constructor.name;
+            const originalMethod = descriptor.value;
+
             descriptor.value = wrappedMethod(
                 className,
-                descriptor.value,
+                name, // methodName
+                originalMethod,
                 onStart,
                 onSuccess,
                 onError
@@ -19,9 +22,11 @@ export default ({ onStart, onSuccess, onError }) =>
             .forEach(methodName => {
                 // not private method and not constructor
                 if (!methodName.startsWith('_') && methodName !== 'constructor') {
+                    const originalMethod = target.prototype[methodName];
                     target.prototype[methodName] = wrappedMethod(
                         className,
-                        target.prototype[methodName],
+                        methodName,
+                        originalMethod,
                         onStart,
                         onSuccess,
                         onError
@@ -30,9 +35,8 @@ export default ({ onStart, onSuccess, onError }) =>
             });
     };
 
-function wrappedMethod(className, method,
+function wrappedMethod(className, methodName, originalMethod,
     onStart, onSuccess, onError) {
-    const methodName = method.name;
     const methodInfo = `${className}.${methodName}`;
 
     // eslint-disable-next-line
@@ -46,7 +50,7 @@ function wrappedMethod(className, method,
         });
 
         try {
-            const result = method.apply(this, args);
+            const result = originalMethod.apply(this, args);
 
             // if Promise
             if (result && typeof result.then === 'function') {

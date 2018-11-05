@@ -1,4 +1,5 @@
-require('dotenv').config();
+import { config } from 'dotenv';
+config();
 
 export const ENVIRONMENT = process.env.ENVIRONMENT;
 

@@ -3,7 +3,13 @@ import baseDecorator from './baseDecorator';
 
 export default baseDecorator({
     onStart({ callContext, methodInfo }) {
-        logger.log('CRITICAL');
+        //
+    },
+    onSuccess({ callContext, methodInfo }) {
+        //
+    },
+    onError({ methodInfo, args, error }) {
+        logger.logCritical('CRITICAL SLACK', error);
     },
 });
 

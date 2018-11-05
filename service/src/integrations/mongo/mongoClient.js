@@ -1,5 +1,7 @@
+import { log } from '../../decorators';
 const MONGO_TIMEOUT = 30000;
 
+@log
 class MongoClient {
     find(MongoObject, args) {
         // wrap and execute native Mongo client method

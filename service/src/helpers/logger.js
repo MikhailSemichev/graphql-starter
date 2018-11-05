@@ -1,8 +1,8 @@
-import { createLogger, format, transports } from 'winston';
+import { createLogger, format, transports, config } from 'winston';
 
 const logger = createLogger({
     level: 'info',
-    // format: format.json(),
+    levels: config.syslog.levels,
     format: format.combine(
         format.timestamp(),
         format.colorize(),
@@ -17,6 +17,7 @@ const logger = createLogger({
     transports: [
         new transports.File({ filename: 'logs/all.log', timestamp: true }),
         new transports.File({ filename: 'logs/error.log', level: 'error', timestamp: true }),
+        new transports.Console({ level: 'crit' }), // Slack Channel message
     ],
     handleExceptions: true,
     exitOnError: true,
@@ -24,18 +25,21 @@ const logger = createLogger({
 
 
 if (process.env.NODE_ENV !== 'production') {
-    logger.add(new transports.Console({
-        format: format.simple(),
-    }));
+    logger.add(new transports.Console());
 }
 
 export default {
+    log(message) {
+        logger.log('info', message);
+    },
+
     logError(message, error) {
         const errorText = error && error.stack ? `${error.stack}` : `${error}`;
         logger.log('error', `${message} ${errorText}`);
     },
 
-    log(message) {
-        logger.log('info', message);
+    logCritical(message, error) {
+        const errorText = error && error.stack ? `${error.stack}` : `${error}`;
+        logger.log('crit', `${message} ${errorText}`);
     },
 };

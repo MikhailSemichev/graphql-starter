@@ -1,5 +1,5 @@
 import log from './logDecorator';
-import auth from './criticalDecorator';
+import auth from './authDecorator';
 import critical from './criticalDecorator';
 
 export {

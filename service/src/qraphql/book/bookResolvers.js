@@ -1,6 +1,8 @@
 import { BOOK_STATUS } from '../../enums';
 import { copyProps } from '../../helpers/utils';
 import { log, critical } from '../../decorators';
+import stripeClient from '../../integrations/stripeClient';
+import redisClient from '../../integrations/redisClient';
 
 @log
 class BookResolvers {
@@ -9,7 +11,6 @@ class BookResolvers {
         return books.find(b => b._id === id);
     }
 
-    //@critical
     getBooks(_, args, context) {
         const { filter = {} } = args;
         const { title, authorId } = filter;
@@ -39,6 +40,31 @@ class BookResolvers {
         }
 
         return book;
+    }
+
+    async getTop10Books(_, args, context) {
+        let result = await redisClient.get('top_10_books1');
+        if (!result) {
+            // super long calculation of top 10
+            await new Promise(res => setTimeout(res, 3000));
+            const top10 = books.slice(0, 2);
+
+            // cache results
+            redisClient.set('top_10_books1', top10);
+            result = top10;
+        }
+
+        return result;
+    }
+
+    @critical
+    async buyBook(_, args, context) {
+        const { bookId, stripeToken } = args;
+        const recipt = await stripeClient.payStripe(stripeToken, `Buy book ${bookId}`);
+
+        // Store recipt to db
+
+        return recipt;
     }
 }
 
