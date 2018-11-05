@@ -5,7 +5,7 @@ import authorSchema from './author/authorSchema';
 import bookSchema from './book/bookSchema';
 import userSchema from './user/userSchema';
 
-module.exports = {
+export default {
     typeDefs:
         helloSchema.typeDefs +
         authorSchema.typeDefs +

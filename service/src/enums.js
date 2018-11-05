@@ -1,9 +1,9 @@
-module.exports.ROLE = {
+export const ROLE = {
     CLIENT: 'CLIENT',
     ADMIN: 'ADMIN',
 };
 
-module.exports.BOOK_STATUS = {
+export const BOOK_STATUS = {
     draft: 'draft',
     active: 'active',
     deleted: 'deleted',

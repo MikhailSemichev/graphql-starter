@@ -27,7 +27,7 @@ function log(target, name, descriptor) {
     };
 }*/
 
-module.exports = baseDecorator({
+export default baseDecorator({
     onStart({ callContext, methodInfo }) {
         logger.log(`${methodInfo}...`);
         callContext.start = Date.now();

@@ -1,8 +1,10 @@
 import redis from 'redis';
-import { ENVIRONMENT, REDIS_URL, REDIS_PASSWORD } from '../../constants';
+import { ENVIRONMENT, REDIS_URL, REDIS_PASSWORD } from '../constants';
+import { log } from '../decorators';
 
 const [host, port] = REDIS_URL.split(':');
 
+@log
 class RedisClient {
     init() {
         this.client = redis.createClient(port, host, { no_ready_check: true });
@@ -20,6 +22,7 @@ class RedisClient {
     get(key) {
         return promisify(this.client, 'get', envKey(key));
     }
+
     set(key, value) {
         return promisify(this.client, 'set', envKey(key), JSON.stringify(value));
     }
@@ -46,9 +49,9 @@ function envKey(key) {
     return `${ENVIRONMENT}__${key}`;
 }
 
-function promisify(redisClient, method, ...args) {
+function promisify(object, method, ...args) {
     return new Promise((resolve, reject) => {
-        redisClient[method](...args, (err, value) => {
+        object[method](...args, (err, value) => {
             if (err) {
                 reject(err);
                 return;

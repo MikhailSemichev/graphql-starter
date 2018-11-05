@@ -1,11 +1,10 @@
 import express from 'express';
 import cors from 'cors';
-
 import { ApolloServer } from 'apollo-server-express';
+import { typeDefs, resolvers } from './qraphql';
 
-const { typeDefs, resolvers } = require('./qraphql');
 import { verifyToken } from './helpers/tokenHelper';
-require('./helpers/logger');
+import './helpers/logger';
 
 const app = express();
 

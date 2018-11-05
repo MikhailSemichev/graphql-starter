@@ -1,6 +1,6 @@
 import { BOOK_STATUS } from '../../enums';
 import { copyProps } from '../../helpers/utils';
-import { log } from '../../decorators';
+import { log, critical } from '../../decorators';
 
 @log
 class BookResolvers {
@@ -9,6 +9,7 @@ class BookResolvers {
         return books.find(b => b._id === id);
     }
 
+    //@critical
     getBooks(_, args, context) {
         const { filter = {} } = args;
         const { title, authorId } = filter;
@@ -65,4 +66,4 @@ var books = [
     },
 ];
 
-module.exports = new BookResolvers();
+export default new BookResolvers();

@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import { AUTH_SECRET_KEY } from '../constants';
 
-module.exports = {
+export default {
     generateToken,
     verifyToken,
 };

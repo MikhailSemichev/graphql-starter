@@ -1,5 +1,9 @@
 import log from './logDecorator';
+import auth from './criticalDecorator';
+import critical from './criticalDecorator';
 
-module.exports = {
+export {
     log,
+    auth,
+    critical,
 };

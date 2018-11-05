@@ -2,8 +2,6 @@ import booksResolvers from './bookResolvers';
 import authorResolvers from '../author/authorResolvers';
 import bookTypes from './bookTypes';
 
-const { auth, ROLE } = require('../../middlewares/authMiddleware');
-
 const typeDefs = `
     extend type Query {
         getBooks(filter: BooksFilterInput): [Book]
@@ -19,20 +17,19 @@ const typeDefs = `
 
 const resolvers = {
     Query: {
-        getBooks: auth([ROLE.CLIENT, ROLE.ADMIN])(booksResolvers.getBooks),
-        getBook: auth([ROLE.CLIENT, ROLE.ADMIN])(booksResolvers.getBook),
+        getBooks: booksResolvers.getBooks,
+        getBook: booksResolvers.getBook,
     },
     Mutation: {
-        saveBook: auth([ROLE.ADMIN])(booksResolvers.saveBook),
+        saveBook: booksResolvers.saveBook,
     },
     Book: {
-        // history: (parent, args, context) => getEstimationHistory(context, { estimationId: parent._id })
         author: (book, args, context) =>
             authorResolvers.getAuthor(book, { id: book.authorId }, context),
     },
 };
 
-module.exports = {
+export default {
     typeDefs,
     resolvers,
 };

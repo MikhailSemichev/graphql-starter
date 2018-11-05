@@ -46,4 +46,4 @@ class AuthorResolvers {
     }
 }
 
-module.exports = new AuthorResolvers();
+export default new AuthorResolvers();

@@ -25,4 +25,4 @@ class UserResolvers {
     }
 }
 
-module.exports = new UserResolvers();
+export default new UserResolvers();

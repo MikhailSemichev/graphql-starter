@@ -16,7 +16,7 @@ const resolvers = {
     },
 };
 
-module.exports = {
+export default {
     typeDefs,
     resolvers,
 };

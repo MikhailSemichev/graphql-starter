@@ -8,6 +8,7 @@
     },
     "scripts": {
         "start": "nodemon --inspect src/server.js --exec babel-node",
+        "prod": "babel-node src/server.js",
         "build": "babel src -d dist",
         "ap": "apollo schema:publish --endpoint=\"http://localhost:4000/graphql\" --key=\"service:MikhailSemichev-7695:JIEFvdrvmmn5ALyOz4WJYA\""
     },

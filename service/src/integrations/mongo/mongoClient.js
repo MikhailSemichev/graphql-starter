@@ -34,5 +34,5 @@ class MongoClient {
     }
 }
 
-module.exports = new MongoClient();
+export default new MongoClient();
 

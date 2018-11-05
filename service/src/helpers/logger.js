@@ -1,4 +1,4 @@
-const { createLogger, format, transports } = require('winston');
+import { createLogger, format, transports } from 'winston';
 
 const logger = createLogger({
     level: 'info',
@@ -29,9 +29,10 @@ if (process.env.NODE_ENV !== 'production') {
     }));
 }
 
-module.exports = {
+export default {
     logError(message, error) {
-        logger.log('error', `${message} ${error.message}`);
+        const errorText = error && error.stack ? `${error.stack}` : `${error}`;
+        logger.log('error', `${message} ${errorText}`);
     },
 
     log(message) {

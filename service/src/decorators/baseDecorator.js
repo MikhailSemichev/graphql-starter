@@ -1,4 +1,4 @@
-module.exports = ({ onStart, onSuccess, onError }) =>
+export default ({ onStart, onSuccess, onError }) =>
     function baseDecorator(target, name, descriptor) {
         // put on method
         if (name) {
