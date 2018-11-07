@@ -1,45 +1,43 @@
 import { BOOK_STATUS } from '../../enums';
-import { copyProps } from '../../helpers/utils';
 import { log, critical } from '../../decorators';
-import stripeClient from '../../integrations/stripeClient';
+
+import mongoClient, { Mongo } from '../../integrations/mongo/mongoClient';
 import redisClient from '../../integrations/redisClient';
+import stripeClient from '../../integrations/stripeClient';
 
 @log
 class BookResolvers {
-    getBook(_, args, context) {
+    async getBook(_, args, context) {
         const { id } = args;
-        return books.find(b => b._id === id);
+        const book = await mongoClient.findOne(Mongo.Book, { _id: id });
+        return book;
     }
 
-    getBooks(_, args, context) {
+    async getBooks(_, args, context) {
         const { filter = {} } = args;
         const { title, authorId } = filter;
 
-        let result = books;
+        const condition = {};
 
         if (title) {
-            result = result.filter(b => b.title.includes(title));
+            condition.title = { $regex: `.*${title}.*`, $options: 'si' };
         }
 
         if (authorId) {
-            result = result.filter(b => b.authorId === authorId);
+            condition.authorId = authorId;
         }
 
-        return result;
+        const books = await mongoClient.findMany(Mongo.Book, condition);
+
+        return books;
     }
 
-    saveBook(_, args, context) {
+    async saveBook(_, args, context) {
         const { book } = args;
 
-        if (!book._id) {
-            book._id = `${Date.now()}`;
-            books.push(book);
-        } else {
-            const bookToUpdate = books.find(b => b._id === book._id);
-            copyProps(book, bookToUpdate);
-        }
+        const updatedBook = await mongoClient.upsert(Mongo.Book, book, true);
 
-        return book;
+        return updatedBook;
     }
 
     async getTop10Books(_, args, context) {
@@ -47,7 +45,7 @@ class BookResolvers {
         if (!result) {
             // super long calculation of top 10
             await new Promise(res => setTimeout(res, 3000));
-            const top10 = books.slice(0, 2);
+            const top10 = mongoClient.findMany(Mongo.Book, {}, { limit: 2 }); // books.slice(0, 2);
 
             // cache results
             redisClient.set('top_10_books1', top10);
