@@ -1,0 +1,6 @@
+{
+    "globals": {
+        "Mongo": true,
+        "print": true
+    }
+}

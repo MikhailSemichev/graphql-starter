@@ -11,7 +11,9 @@
         "prod": "babel-node src/server.js",
         "build": "babel src -d dist",
         "ap": "apollo schema:publish --endpoint=\"http://localhost:4000/graphql\" --key=\"service:MikhailSemichev-7695:JIEFvdrvmmn5ALyOz4WJYA\"",
-        "test": "npx newman run https://www.getpostman.com/collections/df697b3c9285cce50a39 -e postman.dev.json"
+        "test": "npx newman run https://www.getpostman.com/collections/df697b3c9285cce50a39 -e postman.dev.json",
+        "migration_1_0_1__1": "mongo --nodb \"scripts/migrations/1.0.1/add-book-price.js\"",
+        "migration_1_0_1__2": "mongo --nodb \"scripts/migrations/1.0.1/update-author-names.js\""
     },
     "repository": {
         "type": "git",
