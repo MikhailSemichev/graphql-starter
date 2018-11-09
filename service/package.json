@@ -10,7 +10,8 @@
         "start": "nodemon --inspect src/server.js --exec babel-node",
         "prod": "babel-node src/server.js",
         "build": "babel src -d dist",
-        "ap": "apollo schema:publish --endpoint=\"http://localhost:4000/graphql\" --key=\"service:MikhailSemichev-7695:JIEFvdrvmmn5ALyOz4WJYA\""
+        "ap": "apollo schema:publish --endpoint=\"http://localhost:4000/graphql\" --key=\"service:MikhailSemichev-7695:JIEFvdrvmmn5ALyOz4WJYA\"",
+        "test": "npx newman run https://www.getpostman.com/collections/df697b3c9285cce50a39 -e postman.dev.json"
     },
     "repository": {
         "type": "git",
@@ -47,6 +48,7 @@
         "babel-eslint": "8.2.1",
         "eslint": "5.6.0",
         "eslint-plugin-node": "^7.0.1",
+        "newman": "^4.2.2",
         "replace-require-with-import": "^2.1.0"
     }
 }

@@ -27,14 +27,18 @@ function log(target, name, descriptor) {
     };
 }*/
 
-export default baseDecorator({
+export default (errorOnly) => baseDecorator({
     onStart({ callContext, methodInfo }) {
-        logger.log(`${methodInfo}...`);
-        callContext.start = Date.now();
+        if (!errorOnly) {
+            logger.log(`${methodInfo}...`);
+            callContext.start = Date.now();
+        }
     },
 
     onSuccess({ callContext, methodInfo }) {
-        logger.log(`${methodInfo} : perf=${Date.now() - callContext.start}ms`);
+        if (!errorOnly) {
+            logger.log(`${methodInfo} : perf=${Date.now() - callContext.start}ms`);
+        }
     },
 
     onError({ methodInfo, args, error }) {

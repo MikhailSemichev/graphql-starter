@@ -3,7 +3,7 @@ import { log } from '../../decorators';
 import { MONGO_URL, MONGO_TIMEOUT } from '../../constants';
 export { default as Mongo } from './mongoSchema';
 
-@log
+@log(true)
 class MongoClient {
     init() {
         mongoose.Promise = global.Promise;
@@ -38,7 +38,7 @@ class MongoClient {
     }
 
     async upsert(MongoObject, item, returnUpdated) {
-        const _id = item._id || mongoose.Types.ObjectId().str;
+        const _id = item._id || mongoose.Types.ObjectId().toString();
 
         await MongoObject.updateOne({ _id }, item, {
             upsert: true,

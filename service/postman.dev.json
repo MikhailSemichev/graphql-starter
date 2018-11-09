@@ -1,0 +1,16 @@
+{
+    "id": "c2072c9e-6ab5-a80e-7385-2a52427db594",
+    "name": "Localhost_4000",
+    "values": [
+      {
+        "enabled": true,
+        "key": "URL",
+        "value": "http://localhost:4000/graphql",
+        "type": "text"
+      }
+    ],
+    "timestamp": 1541779691867,
+    "_postman_variable_scope": "environment",
+    "_postman_exported_at": "2018-11-09T16:15:06.714Z",
+    "_postman_exported_using": "Postman/5.5.3"
+}

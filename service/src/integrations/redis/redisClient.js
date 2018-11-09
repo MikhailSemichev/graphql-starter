@@ -1,10 +1,10 @@
 import redis from 'redis';
-import { ENVIRONMENT, REDIS_URL, REDIS_PASSWORD } from '../constants';
-import { log } from '../decorators';
+import { ENVIRONMENT, REDIS_URL, REDIS_PASSWORD } from '../../constants';
+import { log } from '../../decorators';
 
 const [host, port] = REDIS_URL.split(':');
 
-@log
+@log()
 class RedisClient {
     init() {
         this.client = redis.createClient(port, host, { no_ready_check: true });
