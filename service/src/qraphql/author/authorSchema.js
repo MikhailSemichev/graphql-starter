@@ -9,7 +9,7 @@ const typeDefs = `
     }
 
     extend type Mutation {
-        saveAuthor(author: AuthorInput): Author
+        saveAuthor(author: AuthorInput!): Author
         deleteAuthor(id: String!): String
     }
 
