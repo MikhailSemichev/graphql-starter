@@ -1,6 +1,6 @@
 let counter = 0;
 
-const typeDefs = `
+export const typeDefs = `
     type Query {
         hello: String
         long(delay: Int): Int
@@ -11,13 +11,21 @@ const typeDefs = `
     }
 `;
 
-const resolvers = {
+export const resolvers = {
     Query: {
-        hello: () => 'Hello World',
+        hello: () => {
+            debugger;
+            return 'Hello World';
+        },
         long: (_, args, context) => {
             const { delay } = args;
-            const value = delay || Math.round(Math.random() * 10000);
-            return new Promise(r => setTimeout(r, value, value));
+            const timeMS = delay || Math.round(Math.random() * 10000);
+
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    resolve(timeMS);
+                }, timeMS);
+            });
         },
     },
     Mutation: {
@@ -26,9 +34,4 @@ const resolvers = {
             return counter;
         },
     },
-};
-
-export default {
-    typeDefs,
-    resolvers,
 };

@@ -1,26 +1,11 @@
 import express from 'express';
 import cors from 'cors';
 import { ApolloServer } from 'apollo-server-express';
-import { typeDefs, resolvers } from './qraphql';
-
-import { verifyToken } from './helpers/tokenHelper';
-import './helpers/logger';
+import  { typeDefs, resolvers } from './qraphql/hello/helloSchema';
 
 const app = express();
 
 app.use(cors());
-
-app.use((req, res, next) => {
-    const { authorization } = req.headers;
-
-    if (authorization) {
-        // authorization: Bearer XXXXXXXXXXXXXXXX
-        const token = authorization.split(' ')[1];
-        req.user = verifyToken(token);
-    }
-
-    next();
-});
 
 const server = new ApolloServer({
     typeDefs,
@@ -37,12 +22,6 @@ const server = new ApolloServer({
             'editor.fontSize': 16,
             'editor.cursorShape': 'line',
         },
-    },
-    context: ({ req }) => {
-        return {
-            req,
-            user: req.user,
-        };
     },
 });
 
