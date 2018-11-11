@@ -3,7 +3,7 @@ let counter = 0;
 export const typeDefs = `
     type Query {
         hello: String
-        long(delay: Int): Int
+        long(delay: Int): String
     }
 
     type Mutation {
@@ -23,7 +23,7 @@ export const resolvers = {
 
             return new Promise(resolve => {
                 setTimeout(() => {
-                    resolve(timeMS);
+                    resolve(`Return after delay: ${timeMS}`);
                 }, timeMS);
             });
         },
