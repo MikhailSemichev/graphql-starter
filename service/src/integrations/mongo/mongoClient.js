@@ -1,9 +1,7 @@
 import mongoose from 'mongoose';
-import { log } from '../../decorators';
 import { MONGO_URL, MONGO_TIMEOUT } from '../../constants';
 export { default as Mongo } from './mongoSchema';
 
-@log(true)
 class MongoClient {
     init() {
         mongoose.Promise = global.Promise;

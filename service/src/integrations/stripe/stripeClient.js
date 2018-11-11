@@ -1,6 +1,3 @@
-import { log } from '../../decorators';
-
-@log()
 class StripeClient {
     payStripe(token, infoMessage) {
         return new Promise((resolve, reject) => {
