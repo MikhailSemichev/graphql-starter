@@ -9,7 +9,7 @@ export default baseDecorator({
         //
     },
     onError({ methodInfo, args, error }) {
-        logger.logCritical('CRITICAL SLACK', error);
+        logger.logCritical(`CRITICAL SLACK MSG: ${methodInfo}`, error);
     },
 });
 
