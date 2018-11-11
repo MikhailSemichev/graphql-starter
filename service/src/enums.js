@@ -8,8 +8,3 @@ export const BOOK_STATUS = {
     active: 'active',
     deleted: 'deleted',
 };
-
-export default () => {
-    console.log('Hello');
-};
-

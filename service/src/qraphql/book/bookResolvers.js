@@ -1,19 +1,14 @@
-import { log, critical, auth } from '../../decorators';
-
 import mongoClient, { Mongo } from '../../integrations/mongo/mongoClient';
 import redisClient from '../../integrations/redis/redisClient';
 import stripeClient from '../../integrations/stripe/stripeClient';
 
-@log()
 class BookResolvers {
-    @auth.client
     async getBook(_, args, context) {
         const { id } = args;
         const book = await mongoClient.findOne(Mongo.Book, { _id: id });
         return book;
     }
 
-    @auth.client
     async getBooks(_, args, context) {
         const { filter = {} } = args;
         const { title, authorId } = filter;
@@ -33,7 +28,6 @@ class BookResolvers {
         return books;
     }
 
-    @auth.admin
     async saveBook(_, args, context) {
         const { book } = args;
 
@@ -42,7 +36,6 @@ class BookResolvers {
         return updatedBook;
     }
 
-    @auth.client
     async getTop10Books(_, args, context) {
         let result = await redisClient.get('top_10_books1');
         if (!result) {
@@ -58,8 +51,6 @@ class BookResolvers {
         return result;
     }
 
-    @critical
-    @auth.client
     async buyBook(_, args, context) {
         const { bookId, stripeToken } = args;
         const recipt = await stripeClient.payStripe(stripeToken, `Buy book ${bookId}`);
