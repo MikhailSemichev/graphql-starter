@@ -29,7 +29,8 @@ export const resolvers = {
         },
     },
     Mutation: {
-        increment: (_, { val }, context) => {
+        increment: (_, args, context) => {
+            const { val } = args;
             counter += val;
             return counter;
         },
