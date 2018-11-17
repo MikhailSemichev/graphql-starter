@@ -37,14 +37,14 @@ class BookResolvers {
     }
 
     async getTop10Books(_, args, context) {
-        let result = await redisClient.get('top_10_books1');
+        let result = await redisClient.get('top_10_books2');
         if (!result) {
             // super long calculation of top 10
             await new Promise(res => setTimeout(res, 3000));
-            const top10 = mongoClient.findMany(Mongo.Book, {}, { limit: 3 }); // books.slice(0, 2);
+            const top10 = await mongoClient.findMany(Mongo.Book, {}, { limit: 3 }); // books.slice(0, 2);
 
             // cache results
-            redisClient.set('top_10_books1', top10);
+            redisClient.set('top_10_books2', top10);
             result = top10;
         }
 
