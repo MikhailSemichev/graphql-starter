@@ -4,8 +4,8 @@ import bookTypes from './bookTypes';
 
 const typeDefs = `
     extend type Query {
-        getBooks(filter: BooksFilterInput): [Book]
         getBook(id: String!): Book
+        getBooks(filter: BooksFilterInput): [Book]
         getTop10Books: [Book]
     }
     
@@ -19,8 +19,8 @@ const typeDefs = `
 
 const resolvers = {
     Query: {
-        getBooks: booksResolvers.getBooks,
         getBook: booksResolvers.getBook,
+        getBooks: booksResolvers.getBooks,
         getTop10Books: booksResolvers.getTop10Books,
     },
     Mutation: {
