@@ -8,8 +8,8 @@
     },
     "scripts": {
         "start": "nodemon --inspect src/server.js --exec babel-node",
-        "prod": "babel-node src/server.js",
         "build": "babel src -d dist",
+        "prod": "node dist/server.js",
         "ap": "apollo schema:publish --endpoint=\"http://localhost:4000/graphql\" --key=\"service:MikhailSemichev-7695:JIEFvdrvmmn5ALyOz4WJYA\"",
         "test": "npx newman run https://www.getpostman.com/collections/df697b3c9285cce50a39 -e postman.dev.json",
         "migration_1_0_1__1": "mongo --nodb \"scripts/migrations/1.0.1/add-book-price.js\"",
@@ -48,6 +48,7 @@
     },
     "devDependencies": {
         "babel-eslint": "8.2.1",
+        "babel-plugin-graphql-tag": "^1.6.0",
         "eslint": "5.6.0",
         "eslint-plugin-node": "^7.0.1",
         "newman": "^4.2.2",
