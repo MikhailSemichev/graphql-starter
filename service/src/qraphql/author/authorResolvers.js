@@ -9,7 +9,7 @@ let authors = [
     { _id: '4', name: 'Lermontov' },
 ];
 
-@log()
+@log
 class AuthorResolvers {
     @auth.client
     getAuthor(_, args, context) {

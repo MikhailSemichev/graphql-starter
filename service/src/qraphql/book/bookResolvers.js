@@ -4,7 +4,7 @@ import mongoClient, { Mongo } from '../../integrations/mongo/mongoClient';
 import redisClient from '../../integrations/redis/redisClient';
 import stripeClient from '../../integrations/stripe/stripeClient';
 
-@log()
+@log
 class BookResolvers {
     @auth.client
     async getBook(_, args, context) {

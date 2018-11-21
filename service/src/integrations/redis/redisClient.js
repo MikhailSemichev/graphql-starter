@@ -4,7 +4,7 @@ import { log } from '../../decorators';
 
 const [host, port] = REDIS_URL.split(':');
 
-@log()
+@log
 class RedisClient {
     init() {
         this.client = redis.createClient(port, host, { no_ready_check: true });
