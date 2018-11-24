@@ -18,7 +18,6 @@ export const resolvers = {
         },
         long: (_, args, context) => {
             const { delay } = args;
-            debugger;
             const timeMS = delay || Math.round(Math.random() * 10000);
 
             return new Promise(resolve => {
