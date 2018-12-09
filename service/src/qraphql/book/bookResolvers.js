@@ -1,6 +1,10 @@
 import { log, critical, auth } from '../../decorators';
+import { Mongo } from '../../integrations/mongo/mongoClient';
 
-import mongoClient, { Mongo } from '../../integrations/mongo/mongoClient';
+// Here we can switch between real Mongo db client and Mock client with test data 
+// import mongoClient from '../../integrations/mongo/mongoClient';
+import mongoClient from '../../integrations/mongo/mongoClient.BooksMock';
+
 import redisClient from '../../integrations/redis/redisClient';
 import stripeClient from '../../integrations/stripe/stripeClient';
 
