@@ -1,6 +1,6 @@
 # Simple Node + GraphQL Microservice Starter
 
-![Architecture Diagram](http://url/to/img.png)
+![Architecture Diagram](https://github.com/MikhailSemichev/graphql-starter/blob/master/service/architecture.png)
 
 Functionality:
 * GraphQL demo api (books, authors)
