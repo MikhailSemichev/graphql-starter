@@ -19,7 +19,7 @@ Functionality:
 
 > npm start
 
-Then open browser at (http://localhost:4000/graphql)[http://localhost:4000/graphql]
+Then open browser at [http://localhost:4000/graphql](http://localhost:4000/graphql)
 
 # To run Postman tests
 > npm test
